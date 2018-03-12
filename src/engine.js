@@ -54,7 +54,7 @@ var Game = new function() {
   
 
   // Handle Input
-  var KEY_CODES = { 37:'left', 39:'right', 32 :'fire' };
+  var KEY_CODES = { 38: 'up', 40: 'down', 32 :'space' };
   this.keys = {};
 
   this.setupInput = function() {
@@ -137,30 +137,6 @@ var Game = new function() {
 
 };
 
-
-var SpriteSheet = new function() {
-  this.map = { }; 
-
-  this.load = function(spriteData,callback) { 
-    this.map = spriteData;
-    this.image = new Image();
-    this.image.onload = callback;
-    this.image.src = 'img/sprites.png';
-  };
-
-  this.draw = function(ctx,sprite,x,y,frame) {
-    var s = this.map[sprite];
-    if(!frame) frame = 0;
-    ctx.drawImage(this.image,
-                     s.sx + frame * s.w, 
-                     s.sy, 
-                     s.w, s.h, 
-                     Math.floor(x), Math.floor(y),
-                     s.w, s.h);
-  };
-
-  return this;
-};
 
 var TitleScreen = function TitleScreen(title,subtitle,callback) {
   var up = false;
@@ -278,32 +254,6 @@ var GameBoard = function() {
   };
 
 
-};
-
-var Sprite = function() { };
-
-Sprite.prototype.setup = function(sprite,props) {
-  this.sprite = sprite;
-  this.merge(props);
-  this.frame = this.frame || 0;
-  this.w =  SpriteSheet.map[sprite].w;
-  this.h =  SpriteSheet.map[sprite].h;
-};
-
-Sprite.prototype.merge = function(props) {
-  if(props) {
-    for (var prop in props) {
-      this[prop] = props[prop];
-    }
-  }
-};
-
-Sprite.prototype.draw = function(ctx) {
-  SpriteSheet.draw(ctx,this.sprite,this.x,this.y,this.frame);
-};
-
-Sprite.prototype.hit = function(damage) {
-  this.board.remove(this);
 };
 
 
