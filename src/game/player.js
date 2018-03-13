@@ -1,13 +1,14 @@
 
 var Player = function() {
-  var moves = new Array({x:325, y:90},
+  /*------------------------ATRIBUTOS----------------------*/
+  this.moves = new Array({x:325, y:90},
                       {x:357, y:185},
                       {x:389, y:281},
                       {x:421, y:377})
-  var place = 0;
-  var teclaPulsada = false;
+  this.place = 0;
 
-  this.setup('Player', { x: 325, y: 90 });
+  /*------------------------MÉTODOS PÚBLICOS---------------*/
+  this.setup('Player', { x: this.moves[0].x, y: this.moves[0].x });
 
   this.step = function(dt) {
 
@@ -17,22 +18,19 @@ var Player = function() {
     else if(!teclaPulsada && Game.keys['down']) { 
       this.move(1);
     }
-    else {
-      teclaPulsada = false;
-    }
+    else {}
   };
 
   this.move = function(num){
     if(num == -1 && place == 0){
-      place = moves.length;
+      this.place = this.moves.length;
     }
     else if(num == 1 && place == moves.length -1){
-      place = -1;
+      this.place = -1;
     }
-    place += num;
+    this.place += num;
     this.x = moves[place].x;
     this.y = moves[place].y;
-    teclaPulsada = true;
   }
 };
 
