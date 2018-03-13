@@ -1,6 +1,6 @@
 var Player = function() {
 	/*------------------------ATRIBUTOS----------------------*/
-	this.moves = new Array({x:325, y:90},
+	this.moves = new Array(	{x:325, y:90},
 							{x:357, y:185},
 							{x:389, y:281},
 							{x:421, y:377})
