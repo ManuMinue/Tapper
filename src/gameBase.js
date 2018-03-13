@@ -1,3 +1,5 @@
+
+/*Sprites que utilizaremos en el juego*/
 var sprites = {
 	Beer:{			sx: 512,	sy: 99,		w: 23,	h: 32,	frames: 1},
 	Glass:{			sx: 512,	sy: 131,	w: 23,	h: 32,	frames: 1},
@@ -7,10 +9,7 @@ var sprites = {
 	TapperGameplay:{sx: 0,		sy: 480,	w: 512,	h: 480,	frames: 1}
 };
 
-
-
-
-//Establece el fondo del juego
+/*Objeto que establece el fondo del juego*/
 var Fondo = function() {
   this.setup('TapperGameplay');
 
