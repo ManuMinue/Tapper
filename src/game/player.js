@@ -1,36 +1,39 @@
-var Player = function() { 
+
+var Player = function() {
+  var moves = new Array({x:325, y:90},
+                      {x:357, y:185},
+                      {x:389, y:281},
+                      {x:421, y:377})
+  var place = 0;
+  var teclaPulsada = false;
+
   this.setup('Player', { x: 325, y: 90 });
 
   this.step = function(dt) {
-    //diferencia entre x = 32
-    //diferencia entre y = 96 (entre los dos de arriba es 95)
 
-    if(Game.keys['up']) { 
-      if(this.x == 325) {
-        this.x = 421;
-        this.y = 377;
-      }
-
-      else {
-        this.x -= 32;
-        if(this.y == 185) this.y = 90;
-        else this.y -= 96;
-      }
+    if(!teclaPulsada && Game.keys['up']) { 
+      this.move(-1);
     }
-    else if(Game.keys['down']) { 
-      if(this.x == 421) {
-        this.x = 325;
-        this.y = 90;
-      }
-
-      else {
-        this.x += 32;
-        if(this.y == 90) this.y = 185;
-        else this.y += 96;
-      }
+    else if(!teclaPulsada && Game.keys['down']) { 
+      this.move(1);
     }
-    else { /*Aquí vendrá el caso de espacio*/ }
+    else {
+      teclaPulsada = false;
+    }
   };
+
+  this.move = function(num){
+    if(num == -1 && place == 0){
+      place = moves.length;
+    }
+    else if(num == 1 && place == moves.length -1){
+      place = -1;
+    }
+    place += num;
+    this.x = moves[place].x;
+    this.y = moves[place].y;
+    teclaPulsada = true;
+  }
 };
 
 Player.prototype = new Sprite();
