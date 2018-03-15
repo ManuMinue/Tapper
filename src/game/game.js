@@ -7,10 +7,12 @@ var enemies = {
 };
 
 var OBJECT_PLAYER = 1,
-    OBJECT_PLAYER_PROJECTILE = 2,
-    OBJECT_ENEMY = 4,
+    OBJECT_PLAYER_PROJECTILE = 32,
+    OBJECT_ENEMY = 64,
     OBJECT_ENEMY_PROJECTILE = 8,
-    OBJECT_POWERUP = 16;
+    OBJECT_POWERUP = 16,
+    OBJECT_BEER = 2,
+    OBJECT_CLIENT = 4;
 
 var startGame = function() {
     var ua = navigator.userAgent.toLowerCase();
@@ -44,9 +46,12 @@ var level1 = [
 
 var playGame = function() {
 
-    //board.add(new Level(level1,winGame));
+    var board = new GameBoard();
+
+    board.add(new Player());
+
     Game.setBoard(1, new Background());
-    Game.setBoard(2, new Player());
+    Game.setBoard(2, board);
     Game.setBoard(5, new GamePoints(0));
 };
 
