@@ -8,4 +8,4 @@ var Background = function() {
     this.step = function() {}
 }
 
-Fondo.prototype = new Sprite();
+Background.prototype = new Sprite();
