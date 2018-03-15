@@ -45,7 +45,7 @@ var level1 = [
 var playGame = function() {
 
     //board.add(new Level(level1,winGame));
-    Game.setBoard(1, new Fondo());
+    Game.setBoard(1, new Background());
     Game.setBoard(2, new Player());
     Game.setBoard(5, new GamePoints(0));
 };
