@@ -18,6 +18,8 @@ var Player = function() {
     /*Tiempo que tiene que pasar para que el jugador pueda moverse*/
     this.break = this.breakTime;
 
+    this.beerInstance = new Beer(this.x,this.y,2);
+
     /*------------------------MÉTODOS-------------------------*/
     this.step = function(dt) {
         /*Restamos el tiempo transcurrido al tiempo de descanso*/
@@ -29,10 +31,13 @@ var Player = function() {
         } else if (Game.keys['down']) {
             this.move(1);
         } else if (Game.keys['space']) {
-            //this.board.add(new Beer(this.x,this.y,2));
+            var beer = Object.assign(this.beerInstance);
+            beer.x = this.x;
+            beer.y = this.y;
+            this.board.add(beer);
         }
     };
-
+ 
     this.move = function(num) {
 
         if (this.break < 0) {
