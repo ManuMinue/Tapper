@@ -1,5 +1,5 @@
 /*Objeto que establece el fondo del juego*/
-var Fondo = function() {
+var Background = function() {
     this.setup('TapperGameplay');
 
     this.x = 0;
@@ -8,4 +8,4 @@ var Fondo = function() {
     this.step = function() {}
 }
 
-Fondo.prototype = new Sprite();
+Background.prototype = new Sprite();
