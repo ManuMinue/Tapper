@@ -4,11 +4,15 @@ var Client = function(x, y, v) {
 
     this.x = x;
     this.y = y;
-
-    /*------------------------MÉTODOS-------------------------*/
-    this.step = function(dt) {
-        this.x += this.speed;
-    };
 };
 
 Client.prototype = new Sprite();
+Client.prototype.type = OBJECT_CLIENT;
+
+Client.prototype.step = function(dt) {
+    this.x += this.speed;
+};
+
+Client.prototype.hit = function(damage){
+	this.board.remove(this);
+}

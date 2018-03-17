@@ -73,9 +73,3 @@ var Player = function() {
 
 Player.prototype = new Sprite();
 Player.prototype.type = OBJECT_PLAYER;
-
-Player.prototype.hit = function(damage) {
-    if (this.board.remove(this)) {
-        loseGame();
-    }
-};
