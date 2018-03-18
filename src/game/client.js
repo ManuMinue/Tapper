@@ -1,3 +1,5 @@
+
+
 var Client = function(x, y, v) {
     /*------------------------ATRIBUTOS----------------------*/
     this.setup('NPC', { reloadTime: 0.25, speed: v });
