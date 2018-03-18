@@ -20,7 +20,7 @@ var Player = function() {
     this.reload = this.reloadTime;
 
     this.widthBeer = sprites.Beer.w;
-    this.beerInstance = new Beer(this.x - this.widthBeer, this.y, 2);
+    this.beerInstance = new Beer(STATUS.FULL, this.x - this.widthBeer, this.y, 2);
 
     this.clienteInstance = new Client(this.x, this.y, 2);
 
@@ -51,6 +51,10 @@ var Player = function() {
         }
     };
 
+    this.hit = function(damage){
+        
+    }
+
     this.move = function(num) {
 
         if (this.break < 0) {
@@ -69,6 +73,7 @@ var Player = function() {
             this.y = this.moves[this.place].y;
         }
     };
+
 };
 
 Player.prototype = new Sprite();

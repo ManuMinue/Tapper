@@ -26,7 +26,6 @@ var Game = new function() {
         SpriteSheet.load(sprite_data, callback);
     };
 
-
     // Handle Input
     var KEY_CODES = { 38: 'up', 40: 'down', 32: 'space' };
     this.keys = {};
@@ -46,7 +45,6 @@ var Game = new function() {
             }
         }, false);
     };
-
 
     var lastTime = new Date().getTime();
     var maxTime = 1 / 30;
@@ -68,7 +66,6 @@ var Game = new function() {
 
     // Change an active game board
     this.setBoard = function(num, board) { boards[num] = board; };
-
 
     this.setupMobile = function() {
         var container = document.getElementById("container"),
@@ -108,6 +105,5 @@ var Game = new function() {
         this.canvas.style.position = 'absolute';
         this.canvas.style.left = "0px";
         this.canvas.style.top = "0px";
-
     };
 };
