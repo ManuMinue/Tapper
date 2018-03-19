@@ -30,7 +30,9 @@ var Player = function() {
      * Tiempo que tiene que pasar para que el jugador pueda lanzar otra cerveza.
      */
     this.reload = this.reloadTime;
-
+    /**
+     * Atributos que se utilizarán para generar las cervezas lanzadas por el jugador
+     */
     this.widthBeer = sprites.Beer.w;
     this.beerInstance = new Beer(STATUS.FULL, this.x - this.widthBeer, this.y, 2);
     /**
@@ -56,7 +58,9 @@ var Player = function() {
                 this.place += num;
             }
 
-            /*Actualizamos la posición*/
+            /**
+             * Actualizamos la posición
+             */
             this.x = movesPlayer[this.place].x;
             this.y = movesPlayer[this.place].y;
         }
@@ -75,6 +79,10 @@ Player.prototype = new Sprite();
 Player.prototype.type = OBJECT_PLAYER;
 
 /*-----------------------MÉTODOS PROTOTIPO---------------------*/
+/**
+ * Ejecuta un paso del jugador
+ * @param  {double} dt  Tiempo transcurrido entre este paso y el anterior.
+ */
 Player.prototype.step = function(dt) {
     /**
      * Se resta el tiempo transcurrido
@@ -92,16 +100,20 @@ Player.prototype.step = function(dt) {
     } else if (Game.keys['down']) {
         this.move(1);
     } else if (Game.keys['space'] && this.reload < 0) {
+
         this.reload = this.reloadTime;
 
+        /**
+         * Se genera una cerveza siguiendo la instancia contenida en 'beerInstance'.
+         */
         var beer = Object.create(this.beerInstance);
         beer.x = this.x - this.widthBeer;
         beer.y = this.y;
-        
+
         this.board.add(beer);
         /**
-        * Esta parte borrar a partir de la implementación del generador de clientes
-        */
+         * Esta parte borrar a partir de la implementación del generador de clientes
+         */
         var client = Object.create(this.clientInstance);
         client.x = 512 - this.x;
         client.y = this.y;

@@ -11,6 +11,9 @@ var Client = function(x, y, v) {
     this.x = x;
     this.y = y;
 
+    /**
+     * Atributos que se utilizarán para generar las jarras vacías lanzadas por el cliente
+     */
     this.widthGlass = sprites.Glass.w;
     this.glassInstance = new Beer(STATUS.EMPTY, this.x + this.widthGlass, this.y, 2);
 };
@@ -34,6 +37,7 @@ Client.prototype.step = function(dt) {
     this.x += this.speed;
 };
 /**
+ * Ejecuta la acción al ser colisionado con otro objeto
  * @param  {int} damage	Cantidad de daño causada.
  */
 Client.prototype.hit = function(damage) {
