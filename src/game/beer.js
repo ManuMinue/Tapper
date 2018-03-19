@@ -25,7 +25,7 @@ var Beer = function(status, x, y, v) {
      * a la derecha, respectivamente. 
      */
     this.move = function() {
-        if(this.status == STATUS.FULL) {
+        if (this.status == STATUS.FULL) {
             this.x -= this.speed;
         } else {
             this.x += this.speed;
@@ -35,7 +35,7 @@ var Beer = function(status, x, y, v) {
 
 /*-----------------------PROTOTIPO---------------------*/
 /**
- * Definimos que hereda de la clase Sprite
+ * Definimos que hereda de la clase Sprite.
  */
 Beer.prototype = new Sprite();
 /**
@@ -46,7 +46,7 @@ Beer.prototype.type = OBJECT_BEER;
 /*-----------------------MÉTODOS PROTOTIPO---------------------*/
 /**
  * Ejecuta un paso de la cerveza
- * @param  {double} dt  Tiempo transcurrido entre este paso y el anterior
+ * @param  {double} dt  Tiempo transcurrido entre este paso y el anterior.
  */
 Beer.prototype.step = function(dt) {
     this.move();
@@ -71,7 +71,7 @@ Beer.prototype.step = function(dt) {
     if (collision) {
         collision.hit();
         this.board.remove(this);
-    } else if (this.x < 0 ||this.x > Game.width) {
+    } else if (this.x < 0 || this.x > Game.width) {
         this.board.remove(this);
     }
 };
