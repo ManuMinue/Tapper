@@ -38,7 +38,7 @@ var Player = function() {
     /**
      * Esta parte borrar a partir de la implementación del generador de clientes.
      */
-    this.clientInstance = new Client(this.x, this.y, 2);
+    this.clientInstance = new Client(this.place, 2);
 
     /*------------------------MÉTODOS PROPIOS----------------*/
     /**
@@ -115,8 +115,8 @@ Player.prototype.step = function(dt) {
          * Esta parte borrar a partir de la implementación del generador de clientes
          */
         var client = Object.create(this.clientInstance);
-        client.x = 512 - this.x;
-        client.y = this.y;
+        client.x = initPlaceClient[this.place].x;
+        client.y = initPlaceClient[this.place].y;
 
         this.board.add(client);
     }

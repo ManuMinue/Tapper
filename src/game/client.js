@@ -1,21 +1,26 @@
+var initPlaceClient = [{ x: 120, y: 79 },
+    { x: 88, y: 175 },
+    { x: 56, y: 271 },
+    { x: 24, y: 367 }
+];
+
 /**
  * Clase que representa a un cliente.
- * @param {int}     x       Posición en el plano horizontal del cliente.
- * @param {int}     y       Posición en el plano vertical del cliente.
+ * @param {int}     place   Posición del array 'initPlaceClient'.
  * @param {double}  v       Velocidad con la que se desplaza el cliente.
  */
-var Client = function(x, y, v) {
+var Client = function(place, v) {
     /*------------------------ATRIBUTOS----------------------*/
     this.setup('NPC', { speed: v });
 
-    this.x = x;
-    this.y = y;
+    this.x = initPlaceClient[place].x;
+    this.y = initPlaceClient[place].y;
 
     /**
      * Atributos que se utilizarán para generar las jarras vacías lanzadas por el cliente
      */
     this.widthGlass = sprites.Glass.w;
-    this.glassInstance = new Beer(STATUS.EMPTY, this.x + this.widthGlass, this.y, 2);
+    this.glassInstance = new Beer(STATUS.EMPTY, this.x + this.widthGlass, this.y + 1, 2);
 };
 
 /*-----------------------PROTOTIPO---------------------*/
@@ -46,7 +51,7 @@ Client.prototype.hit = function(damage) {
      */
     var glass = Object.create(this.glassInstance);
     glass.x = this.x + this.widthGlass;
-    glass.y = this.y;
+    glass.y = this.y + 1;
 
     this.board.add(glass);
     this.board.remove(this);

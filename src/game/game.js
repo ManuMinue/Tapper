@@ -9,9 +9,10 @@ var enemies = {
 var OBJECT_PLAYER = 1,
     OBJECT_BEER = 2,
     OBJECT_CLIENT = 4,
-    OBJECT_ENEMY = 8,
-    OBJECT_ENEMY_PROJECTILE = 16,
-    OBJECT_POWERUP = 32;
+    OBJECT_DEADZONE = 8,
+    OBJECT_ENEMY = 16,
+    OBJECT_ENEMY_PROJECTILE = 32,
+    OBJECT_POWERUP = 64;
 
 
 var startGame = function() {
