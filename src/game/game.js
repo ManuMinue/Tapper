@@ -48,6 +48,9 @@ var level1 = [
 var playGame = function() {
     var board = new GameBoard();
     board.add(new Player());
+    for (var i = 0; i < placesDeadZone.length; ++i) {
+        board.add(new DeadZone(i));
+    }
     Game.setBoard(1, new Background());
     Game.setBoard(2, board);
     Game.setBoard(5, new GamePoints(0));

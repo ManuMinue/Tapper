@@ -75,3 +75,7 @@ Beer.prototype.step = function(dt) {
         this.board.remove(this);
     }
 };
+
+Beer.prototype.hit = function(){
+    this.board.remove(this);
+};

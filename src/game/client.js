@@ -1,3 +1,6 @@
+/** 
+ * Situaciones iniciales donde se generan los clientes
+ */
 var initPlaceClient = [{ x: 120, y: 79 },
     { x: 88, y: 175 },
     { x: 56, y: 271 },
