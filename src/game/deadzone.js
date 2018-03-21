@@ -9,16 +9,21 @@ var placesDeadZone = [{ x: 100, y: 90 },
 ];
 
 var DeadZone = function(place) {
-    this.draw = function(ctx) {
-        ctx.fillStyle = '#007D01';
-        ctx.fillRect(placesDeadZone[place].x, placesDeadZone[place].y, 10, 65);
-    }
-
-    this.step = function() {
-        var collision = this.board.collide(this, OBJECT_BEER);
-
-        if (collision) {
-            collision.hit();
-        }
-    }
+    this.x = placesDeadZone[place].x;
+    this.y = placesDeadZone[place].y;
 }
+
+DeadZone.prototype = new Sprite();
+
+DeadZone.prototype.step = function() {
+    var collision = this.board.collide(this, (OBJECT_CLIENT || OBJECT_BEER));
+
+    if (collision) {
+        collision.hit();
+    }
+};
+
+DeadZone.prototype.draw = function(ctx) {
+    ctx.fillStyle = '#007D01';
+    ctx.fillRect(this.x, this.y, 10, 65);
+};
