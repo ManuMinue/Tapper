@@ -27,6 +27,20 @@ var Beer = function(status, x, y, v) {
     this.move = function() {
         this.x += this.speed;
     }
+    /**
+     * Actualiza el valor del atributo x.
+     * @param {int} num Posición actual horizontal de la cerveza
+     */
+    this.setX = function(num){
+        this.x = num;
+    }
+    /**
+     * Actualiza el valor del atributo y.
+     * @param {iint} num Posición actual vertical de la cerveza
+     */
+    this.setY = function(num){
+        this.y = num;
+    }
 };
 
 /*-----------------------PROTOTIPO---------------------*/
@@ -47,9 +61,10 @@ Beer.prototype.type = OBJECT_BEER;
 Beer.prototype.step = function(dt) {
     this.move();
     var collision;
-
     /**
      * Dependiendo del estado comprobamos si ha chocado con el cliente o nuestro jugador.
+     * En caso de colisionar llama a la función hit del objeto colisionado y la cerveza 
+     * se elimina.
      */
     switch (this.status) {
         case STATUS.FULL:
@@ -59,19 +74,16 @@ Beer.prototype.step = function(dt) {
             collision = this.board.collide(this, OBJECT_PLAYER);
             break;
     }
-
-    /**
-     * En caso de colisionar llama a la función hit del objeto colisionado y la cerveza 
-     * se elimina
-     */
     if (collision) {
         collision.hit();
         this.board.remove(this);
     }
-
-    var dead = this.board.collide(this, OBJECT_DEADZONE);
-
-    if (dead) {
+    /**
+     * Si se ha colisionado con un DeadZone entonces la cerveza se elimina y se pierde
+     * la partida.
+     */
+    if (this.board.collide(this, OBJECT_DEADZONE)) {
         this.board.remove(this);
+        GameManager.lose();
     }
 };

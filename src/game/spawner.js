@@ -1,50 +1,57 @@
-/** 
- * Situaciones iniciales donde se generan los clientes
+/**
+ * Clase que representa a un generador de clientes.
+ * @param {Client} client     Cliente que se va a generar.
+ * @param {Number} numClients Cantidad de clientes que va a generar.
+ * @param {Number} freq       Frecuencia con la que se generan los clientes.
+ * @param {Number} delay      Tiempo que tiene que transcurrir para que empiece a generar.
  */
-var initPlaceClient = [{ x: 120, y: 79 },
-    { x: 90, y: 175 },
-    { x: 60, y: 271 },
-    { x: 30, y: 367 }
-];
-
-
-var Spawner = function(place, numClients, freq, delay) {
-    this.numClients = numClients;
+var Spawner = function(client, numClients, freq, delay) {
+    /*------------------------ATRIBUTOS----------------------*/
+    this.contClients = numClients;
     this.frequencyTime = freq;
     this.frequency = freq;
     this.delay = delay;
-    this.place = place;
+    this.clientInstance = client;
 
-    this.clientInstance = new Client(initPlaceClient[this.place].x, initPlaceClient[this.place].y, 1);
-
-
-    GameManager.addClients(numClients); // Aumentamos el número de clientes del nivel
+    /**
+     * Añadimos los clientes al manager.
+     */
+    GameManager.addClients(numClients);
 }
 
+/*-----------------------PROTOTIPO---------------------*/
+/**
+ * Definimos que hereda de la clase Sprite.
+ */
 Spawner.prototype = new Sprite();
 
-Spawner.prototype.draw = function(ctx) {
-
-}
+/**
+ * Dibuja el generador, que en este aso al ser invisible, no dibuja nada.
+ * @param  {[type]} ctx Canvas
+ */
+Spawner.prototype.draw = function(ctx) {}
 
 /**
-* Genera un nuevo cliente en función de la frecuencia
-*/
+ * Cada cierto tiempo el generador añade un nuevo cliente.
+ */
 Spawner.prototype.step = function(dt) {
-	/**
-     * Se resta el tiempo transcurrido
+    /**
+     * Se resta el tiempo transcurrido.
      */
     this.delay -= dt;
-    
-    if (this.delay < 0 && this.numClients > 0) {
-    	this.frequency -= dt;
-    	if (this.frequency < 0) {
-    		this.frequency = this.frequencyTime;
+    /**
+     * Comprobamos si ha transcurrido el tiempo para poder empezar y que nos quedan clientes 
+     * por generar.
+     */
+    if (this.delay < 0 && this.contClients > 0) {
+        this.frequency -= dt;
+        if (this.frequency < 0) {
+            this.frequency = this.frequencyTime;
 
-    		var cliente = Object.create(this.clientInstance);
+            var client = Object.create(this.clientInstance);
 
-    		this.board.add(cliente);
-    		--this.numClients;
-    	}
+            this.board.add(client);
+            --this.contClients;
+        }
     }
 }

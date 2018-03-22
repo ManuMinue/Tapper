@@ -1,6 +1,7 @@
 /**
  * Clase que representa a un cliente.
- * @param {int}     place   Posición del array 'initPlaceClient'.
+ * @param {int}     x       Posición horizontal del cliente.
+ * @param {int}     y       Posición vertical del cliente.
  * @param {double}  v       Velocidad con la que se desplaza el cliente.
  */
 var Client = function(x, y, v) {
@@ -14,7 +15,7 @@ var Client = function(x, y, v) {
      * Atributos que se utilizarán para generar las jarras vacías lanzadas por el cliente
      */
     this.widthGlass = sprites.Glass.w;
-    this.glassInstance = new Beer(STATUS.EMPTY, this.x + this.widthGlass, this.y + 1, 2);
+    this.glassInstance = new Beer(STATUS.EMPTY, this.x + this.widthGlass, this.y + 1, 1);
 };
 
 /*-----------------------PROTOTIPO---------------------*/
@@ -33,26 +34,35 @@ Client.prototype.type = OBJECT_CLIENT;
  * @param  {double} dt  Tiempo transcurrido entre este paso y el anterior.
  */
 Client.prototype.step = function(dt) {
+    /**
+     * Actualizamos posición.
+     */
     this.x += this.speed;
-
-    var dead = this.board.collide(this, OBJECT_DEADZONE);
-
-    if (dead) {
+    /**
+     * Si se ha colisionado con un DeadZone entonces el cliente se elimina y se pierde
+     * la partida.
+     */
+    if (this.board.collide(this, OBJECT_DEADZONE)) {
         this.board.remove(this);
+        GameManager.lose();
     }
 };
 /**
  * Ejecuta la acción al ser colisionado con otro objeto
- * @param  {int} damage	Cantidad de daño causada.
+ * @param  {double} damage	Cantidad de daño causada.
  */
 Client.prototype.hit = function(damage) {
     /**
      * Genera una jarra de cerveza vacía.
      */
     var glass = Object.create(this.glassInstance);
-    glass.x = this.x + this.widthGlass;
-    glass.y = this.y + 1;
-
+    glass.setX(this.x + this.widthGlass);
+    glass.setY(this.y + 1);
     this.board.add(glass);
+    
+    GameManager.drinkBeer();
+    /**
+     * Eliminamos el cliente.
+     */
     this.board.remove(this);
 }

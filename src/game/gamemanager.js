@@ -1,40 +1,60 @@
-
-
+/**
+ * Clase que controlará el funcionamiento del juego.
+ * @return {[type]} [description]
+ */
 var GameManager = new function() {
-	var clientes;
-	var jarrasVacias;
-	var jarrasLlenas;
+    /**
+     *	Inicializamos el manager del juego
+     */
+    this.initialize = function() {
+        this.numClients = 0;
+        this.clientsServed = 0;
 
+        this.beerEmpty = 0;
+    }
+    /**
+     * Se añaden clientes totales del juego por cada barra.
+     * @param {Number} num Número de clientes de la barra.
+     */
+    this.addClients = function(num) {
+        this.numClients += num;
+    }
+    /**
+     * Se sirve al cliente una cerveza
+     */
+    this.drinkBeer = function() {
+        ++this.beerEmpty;
+        ++this.clientsServed;
+    }
+    /**
+     * Recogemos una jarra vacía
+     */
+    this.removeGlass = function() {
+        --this.beerEmpty;
+        if(this.clientsServed == this.numClients && this.beerEmpty == 0){
+        	this.win();
+        }
+    }
+    /**
+     * El jugador ha ganado la partida cumpliendo que:
+     * • No quedan clientes a los que servir. El número de clientes es fijo para un nivel y
+     *   se conoce a priori.
+     * • No quedan jarras vacías que recoger.
 
-	/**
-	*	Inicializamos el objeto
-	*	@param  {int}    numClientes  Indica el número inicial de clientes
-	*/
-	this.initialize = function() {
-		this.clientes = 0;
-		this.jarrasVacias = 0;
-		this.jarrasLlenas = 0;
-	}
+     */
+    this.win = function() {
+        console.log('You win');
+    }
 
-	this.addClients = function(numClientes) {
-		this.clientes += numClientes;
-	}
-
-	this.serveBeer = function() {
-		++this.jarrasLlenas;
-
-		console.log(this.jarrasLlenas);
-	}
-
-	this.drinkBeer = function() {
-		--this.jarrasLlenas;
-		++this.jarrasVacias;
-
-		--this.clientes;
-	}
-
-	this.removeBeer = function() {
-		--this.jarrasVacias;
-	}
+    /**
+     * El jugador ha perdido la partida por alguno de estos motivos:
+     * 
+     * • Algún cliente llega al extremo derecho de la barra.
+     * • Alguna jarra vacía llega al extremo derecho de la barra.
+     * • Alguna cerveza llena llega al extremo izquierdo de la barra.
+     */
+    this.lose = function() {
+        console.log('You lose');
+    }
 
 }
