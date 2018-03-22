@@ -107,7 +107,7 @@ Player.prototype.step = function(dt) {
          * Se genera una cerveza siguiendo la instancia contenida en 'beerInstance'.
          */
         var beer = Object.create(this.beerInstance);
-        beer.x = this.x - this.widthBeer- 100;
+        beer.x = this.x - this.widthBeer;
         beer.y = this.y;
 
         this.board.add(beer);

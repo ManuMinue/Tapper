@@ -17,7 +17,7 @@ var Beer = function(status, x, y, v) {
     /*------------------------ATRIBUTOS----------------------*/
     this.setup(status.sprite, { status: status, reloadTime: 0.25, speed: v });
 
-    this.x = x -100;
+    this.x = x - 100;
     this.y = y;
     /*------------------------MÉTODOS PROPIOS----------------*/
     /**

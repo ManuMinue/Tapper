@@ -18,10 +18,9 @@ var DeadZone = function(place) {
 DeadZone.prototype = new Sprite();
 DeadZone.prototype.type = OBJECT_DEADZONE;
 
-
 DeadZone.prototype.step = function() {
     var collision = this.board.collide(this, OBJECT_BEER);
-    if(collision){
+    if (collision) {
         collision.hit();
     }
 };
