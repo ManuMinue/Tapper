@@ -4,10 +4,7 @@
 var OBJECT_PLAYER = 1,
     OBJECT_BEER = 2,
     OBJECT_CLIENT = 4,
-    OBJECT_DEADZONE = 8,
-    OBJECT_ENEMY = 16,
-    OBJECT_ENEMY_PROJECTILE = 32,
-    OBJECT_POWERUP = 64;
+    OBJECT_DEADZONE = 8;
 
 /** 
  * Situaciones iniciales donde se generan los clientes
@@ -28,18 +25,9 @@ var ClientInstance = function(place, v){
 }
 
 var startGame = function() {
-    var ua = navigator.userAgent.toLowerCase();
 
-    // Only 1 row of stars
-    if (ua.match(/android/)) {
-        Game.setBoard(0, new Starfield(50, 0.6, 100, true));
-    } else {
-        Game.setBoard(0, new Starfield(20, 0.4, 100, true));
-        Game.setBoard(1, new Starfield(50, 0.6, 100));
-        Game.setBoard(2, new Starfield(100, 1.0, 50));
-    }
-    Game.setBoard(3, new TitleScreen("Alien Invasion",
-        "Press fire to start playing",
+    Game.setBoard(3, new TitleScreen('Tapper',
+        'Press space to start playing',
         playGame));
 };
 
@@ -58,8 +46,7 @@ var level1 = [
 
 
 var playGame = function() {
-    var board = new GameBoard()
-
+    var board = new GameBoard();
     board.add(new Player());
     for (var i = 0; i < placesDeadZone.length; ++i) {
         board.add(new DeadZone(i));
@@ -81,13 +68,13 @@ var playGame = function() {
 
 var winGame = function() {
     Game.setBoard(3, new TitleScreen("You win!",
-        "Press fire to play again",
+        'Press space to start playing',
         playGame));
 };
 
 var loseGame = function() {
     Game.setBoard(3, new TitleScreen("You lose!",
-        "Press fire to play again",
+        'Press space to start playing',
         playGame));
 };
 
@@ -98,5 +85,5 @@ var Enemy = function(blueprint, override) {
 };
 
 window.addEventListener("load", function() {
-    Game.initialize("game", sprites, playGame);
+    Game.initialize("game", sprites, startGame);
 });

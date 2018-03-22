@@ -1,5 +1,6 @@
 var Game = new function() {
     var boards = [];
+    var board = new GameBoard();
 
     // Game Initialization
     this.initialize = function(canvasElementId, sprite_data, callback) {
@@ -20,10 +21,18 @@ var Game = new function() {
         this.loop();
 
         if (this.mobile) {
-            this.setBoard(4, new TouchControls());
+            this.setBoard(5, new TouchControls());
         }
-
         SpriteSheet.load(sprite_data, callback);
+        
+
+        this.setBoard(1, new Background());
+        this.setBoard(2, board);
+        this.setBoard(3, new TitleScreen("You win!", 'Press space to start playing', playGame));
+        this.setBoard(4, new TitleScreen("You lose!",'Press space to start playing', playGame));
+        this.setBoard(6, new GamePoints(0));
+        this.setBoard(7, new TitleScreen('Tapper', 'Press space to start playing', playGame));
+
     };
 
     // Handle Input
@@ -56,7 +65,7 @@ var Game = new function() {
         if (dt > maxTime) { dt = maxTime; }
 
         for (var i = 0, len = boards.length; i < len; i++) {
-            if (boards[i]) {
+            if (boards[i] && boards[i].activate) {
                 boards[i].step(dt);
                 boards[i].draw(Game.ctx);
             }
@@ -65,7 +74,10 @@ var Game = new function() {
     };
 
     // Change an active game board
-    this.setBoard = function(num, board) { boards[num] = board; };
+    this.setBoard = function(num, board) {
+        board.activate = true;
+        boards[num] = board;
+    };
 
     this.setupMobile = function() {
         var container = document.getElementById("container"),
@@ -106,4 +118,15 @@ var Game = new function() {
         this.canvas.style.left = "0px";
         this.canvas.style.top = "0px";
     };
+    /**
+     * Desactiva una capa
+     * @param  {Number} num Número de la capa
+     */
+    this.deactivate(num) {
+        boards[num].activate = false;
+    }
+    
+    this.activate(num) {
+        boards[num].activate = true;
+    }
 };

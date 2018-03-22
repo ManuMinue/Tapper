@@ -56,5 +56,4 @@ var GameManager = new function() {
     this.lose = function() {
         console.log('You lose');
     }
-
 }
