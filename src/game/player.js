@@ -113,12 +113,12 @@ Player.prototype.step = function(dt) {
         this.board.add(beer);
         /**
          * Esta parte borrar a partir de la implementación del generador de clientes
-         */
+         
         var client = Object.create(this.clientInstance);
         client.x = initPlaceClient[this.place].x;
         client.y = initPlaceClient[this.place].y;
 
-        this.board.add(client);
+        this.board.add(client);*/
     }
 };
 

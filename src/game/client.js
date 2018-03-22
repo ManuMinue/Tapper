@@ -1,23 +1,14 @@
-/** 
- * Situaciones iniciales donde se generan los clientes
- */
-var initPlaceClient = [{ x: 120, y: 79 },
-    { x: 90, y: 175 },
-    { x: 60, y: 271 },
-    { x: 30, y: 367 }
-];
-
 /**
  * Clase que representa a un cliente.
  * @param {int}     place   Posición del array 'initPlaceClient'.
  * @param {double}  v       Velocidad con la que se desplaza el cliente.
  */
-var Client = function(place, v) {
+var Client = function(x, y, v) {
     /*------------------------ATRIBUTOS----------------------*/
     this.setup('NPC', { speed: v });
 
-    this.x = initPlaceClient[place].x;
-    this.y = initPlaceClient[place].y;
+    this.x = x;
+    this.y = y;
 
     /**
      * Atributos que se utilizarán para generar las jarras vacías lanzadas por el cliente
@@ -43,6 +34,12 @@ Client.prototype.type = OBJECT_CLIENT;
  */
 Client.prototype.step = function(dt) {
     this.x += this.speed;
+
+    var dead = this.board.collide(this, OBJECT_DEADZONE);
+
+    if (dead) {
+        this.board.remove(this);
+    }
 };
 /**
  * Ejecuta la acción al ser colisionado con otro objeto
