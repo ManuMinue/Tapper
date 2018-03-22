@@ -17,7 +17,7 @@ var Beer = function(status, x, y, v) {
     /*------------------------ATRIBUTOS----------------------*/
     this.setup(status.sprite, { status: status, reloadTime: 0.25, speed: v });
 
-    this.x = x;
+    this.x = x -100;
     this.y = y;
     /*------------------------MÉTODOS PROPIOS----------------*/
     /**
@@ -25,11 +25,7 @@ var Beer = function(status, x, y, v) {
      * a la derecha, respectivamente. 
      */
     this.move = function() {
-        if (this.status == STATUS.FULL) {
-            this.x -= this.speed;
-        } else {
-            this.x += this.speed;
-        }
+        this.x += this.speed;
     }
 };
 
@@ -66,16 +62,16 @@ Beer.prototype.step = function(dt) {
 
     /**
      * En caso de colisionar llama a la función hit del objeto colisionado y la cerveza 
-     * se elimina. En caso contrario se eliminará si ha salido de los bordes del canvas.
+     * se elimina
      */
     if (collision) {
         collision.hit();
         this.board.remove(this);
-    } else if (this.x < 0 || this.x > Game.width) {
+    }
+
+    var dead = this.board.collide(this, OBJECT_DEADZONE);
+
+    if (dead) {
         this.board.remove(this);
     }
-};
-
-Beer.prototype.hit = function(){
-    this.board.remove(this);
 };

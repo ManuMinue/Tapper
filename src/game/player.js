@@ -34,7 +34,7 @@ var Player = function() {
      * Atributos que se utilizarán para generar las cervezas lanzadas por el jugador
      */
     this.widthBeer = sprites.Beer.w;
-    this.beerInstance = new Beer(STATUS.FULL, this.x - this.widthBeer, this.y, 2);
+    this.beerInstance = new Beer(STATUS.FULL, this.x - this.widthBeer, this.y, -2);
     /**
      * Esta parte borrar a partir de la implementación del generador de clientes.
      */
@@ -107,7 +107,7 @@ Player.prototype.step = function(dt) {
          * Se genera una cerveza siguiendo la instancia contenida en 'beerInstance'.
          */
         var beer = Object.create(this.beerInstance);
-        beer.x = this.x - this.widthBeer;
+        beer.x = this.x - this.widthBeer- 100;
         beer.y = this.y;
 
         this.board.add(beer);
