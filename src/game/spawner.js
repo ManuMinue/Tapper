@@ -16,6 +16,9 @@ var Spawner = function(place, numClients, freq, delay) {
     this.place = place;
 
     this.clientInstance = new Client(initPlaceClient[this.place].x, initPlaceClient[this.place].y, 1);
+
+
+    GameManager.addClients(numClients); // Aumentamos el número de clientes del nivel
 }
 
 Spawner.prototype = new Sprite();

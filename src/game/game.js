@@ -46,16 +46,21 @@ var level1 = [
 
 
 var playGame = function() {
-    var board = new GameBoard();
+    var board = new GameBoard()
+
     board.add(new Player());
     for (var i = 0; i < placesDeadZone.length; ++i) {
         board.add(new DeadZone(i));
     }
 
+    GameManager.initialize();
+
     board.add(new Spawner(0, 5, 3, 2));
-    board.add(new Spawner(1, 5, 2.5, 3));
-    board.add(new Spawner(2, 5, 5, 1));
-    board.add(new Spawner(3, 5, 4, 6));
+    board.add(new Spawner(1, 2, 2.5, 3));
+    board.add(new Spawner(2, 4, 5, 1));
+    board.add(new Spawner(3, 7, 4, 6));
+
+    
 
     Game.setBoard(1, new Background());
     Game.setBoard(2, board);

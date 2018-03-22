@@ -110,6 +110,9 @@ Player.prototype.step = function(dt) {
         beer.x = this.x - this.widthBeer;
         beer.y = this.y;
 
+        GameManager.serveBeer();
+
+
         this.board.add(beer);
         /**
          * Esta parte borrar a partir de la implementación del generador de clientes
