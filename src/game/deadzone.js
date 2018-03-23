@@ -45,6 +45,6 @@ DeadZone.prototype.draw = function(ctx) {
     /**
      * Descomentar en la caso de prueba
      */
-    ctx.fillStyle = '#007D01';
-    ctx.fillRect(this.x, this.y, this.w, this.h);
+    /*ctx.fillStyle = '#007D01';
+    ctx.fillRect(this.x, this.y, this.w, this.h);*/
 };

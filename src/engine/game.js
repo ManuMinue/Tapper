@@ -31,7 +31,7 @@ var Game = new function() {
         this.setBoard(2, board);
         this.setBoard(3, new TitleScreen(false, "You win!", 'Press space to start playing', playGame));
         this.setBoard(4, new TitleScreen(false, "You lose!", 'Press space to start playing', playGame));
-        this.setBoard(6, new GamePoints(0));
+        /*this.setBoard(6, new GamePoints(0));*/
         this.setBoard(7, new TitleScreen(true, 'Tapper', 'Press space to start playing', playGame));
     };
 
