@@ -1,5 +1,6 @@
 var GamePoints = function() {
     Game.points = 0;
+    this.activate = true;
 
     var pointsLength = 8;
 
@@ -19,4 +20,12 @@ var GamePoints = function() {
     };
 
     this.step = function(dt) {};
+
+    this.deactivate = function() {
+        this.activate = false;
+    }
+    
+    this.activate = function() {
+        this.activate = true;
+    }
 };

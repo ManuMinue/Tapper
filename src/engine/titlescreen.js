@@ -1,8 +1,12 @@
-var TitleScreen = function TitleScreen(title, subtitle, callback) {
+var TitleScreen = function TitleScreen(activate, title, subtitle, callback) {
+    this.activate = activate;
     var up = false;
     this.step = function(dt) {
-        if (!Game.keys['fire']) up = true;
-        if (up && Game.keys['fire'] && callback) callback();
+        if (!Game.keys['space']) up = true;
+        if (up && Game.keys['space'] && callback){
+            this.deactivateClass();
+            callback();
+        }
     };
 
     this.draw = function(ctx) {
@@ -22,4 +26,12 @@ var TitleScreen = function TitleScreen(title, subtitle, callback) {
         var measure2 = ctx.measureText(subtitle);
         ctx.fillText(subtitle, Game.width / 2 - measure2.width / 2, Game.height / 2 + 40);
     };
+
+    this.deactivateClass = function() {
+        this.activate = false;
+    }
+    
+    this.activateClass = function() {
+        this.activate = true;
+    }
 };

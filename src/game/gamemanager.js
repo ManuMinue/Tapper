@@ -11,6 +11,9 @@ var GameManager = new function() {
         this.clientsServed = 0;
 
         this.beerEmpty = 0;
+
+        Game.activateBoard(2);
+
     }
     /**
      * Se añaden clientes totales del juego por cada barra.
@@ -31,8 +34,8 @@ var GameManager = new function() {
      */
     this.removeGlass = function() {
         --this.beerEmpty;
-        if(this.clientsServed == this.numClients && this.beerEmpty == 0){
-        	this.win();
+        if (this.clientsServed == this.numClients && this.beerEmpty == 0) {
+            this.win();
         }
     }
     /**
@@ -43,7 +46,8 @@ var GameManager = new function() {
 
      */
     this.win = function() {
-        console.log('You win');
+        Game.deactivateBoard(2);
+        Game.activateBoard(3);
     }
 
     /**
@@ -54,7 +58,8 @@ var GameManager = new function() {
      * • Alguna cerveza llena llega al extremo izquierdo de la barra.
      */
     this.lose = function() {
-        console.log('You lose');
+        Game.deactivateBoard(2);
+        Game.activateBoard(4);
     }
 
 }

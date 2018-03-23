@@ -4,9 +4,17 @@
 var Background = function() {
     /*------------------------ATRIBUTOS----------------------*/
     this.setup('TapperGameplay');
-
+    this.activate = true;
     this.x = 0;
     this.y = 0;
+
+    this.deactivateClass = function() {
+        this.activate = false;
+    }
+    
+    this.activateClass = function() {
+        this.activate = true;
+    }
 }
 
 /*-----------------------PROTOTIPO---------------------*/

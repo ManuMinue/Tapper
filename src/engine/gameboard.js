@@ -1,4 +1,23 @@
-var GameBoard = function() {
+/** 
+ * Situaciones iniciales donde se generan los clientes
+ */
+var initPlaceClient = [{ x: 120, y: 79 },
+    { x: 90, y: 175 },
+    { x: 60, y: 271 },
+    { x: 30, y: 367 }
+];
+
+/**
+ * Instancia de un cliente según unos parámetros
+ * @param {Number} place Posición del array 'initPlaceClient'ñ
+ * @param {Number} v     Velocidad del cliente
+ */
+var ClientInstance = function(place, v){
+    return new Client(initPlaceClient[place].x,initPlaceClient[place].y, v);
+}
+
+var GameBoard = function(activate) {
+    this.activate = activate;
     var board = this;
 
     // The current list of objects
@@ -85,4 +104,24 @@ var GameBoard = function() {
             }
         });
     };
+    this.deactivateClass = function() {
+        this.activate = false;
+        this.resetRemoved();
+        for (var i = 0; i < this.objects.length; ++i) {
+            this.remove(this.objects[i]);
+        }
+        this.finalizeRemoved();
+    }
+
+    this.activateClass = function() {
+        this.activate = true;
+        this.add(new Player());
+        for (var i = 0; i < placesDeadZone.length; ++i) {
+            this.add(new DeadZone(i));
+        }
+        this.add(new Spawner(ClientInstance(0, 0.5), 5, 3, 2));
+        this.add(new Spawner(ClientInstance(1, 0.5), 2, 2.5, 3));
+        this.add(new Spawner(ClientInstance(2, 0.5), 4, 5, 1));
+        this.add(new Spawner(ClientInstance(3, 0.5), 7, 4, 6));
+    }
 };
