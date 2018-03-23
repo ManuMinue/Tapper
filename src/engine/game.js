@@ -25,12 +25,12 @@ var Game = new function() {
             this.setBoard(5, new TouchControls());
         }
         SpriteSheet.load(sprite_data, callback);
-        
+
 
         this.setBoard(1, new Background());
         this.setBoard(2, board);
         this.setBoard(3, new TitleScreen(false, "You win!", 'Press space to start playing', playGame));
-        this.setBoard(4, new TitleScreen(false, "You lose!",'Press space to start playing', playGame));
+        this.setBoard(4, new TitleScreen(false, "You lose!", 'Press space to start playing', playGame));
         this.setBoard(6, new GamePoints(0));
         this.setBoard(7, new TitleScreen(true, 'Tapper', 'Press space to start playing', playGame));
     };
@@ -117,12 +117,11 @@ var Game = new function() {
         this.canvas.style.left = "0px";
         this.canvas.style.top = "0px";
     };
-<<<<<<< HEAD
 
-    this.activateBoard = function(num){
+    this.activateBoard = function(num) {
         boards[num].activateClass();
     }
-    this.deactivateBoard = function(num){
+    this.deactivateBoard = function(num) {
         boards[num].deactivateClass();
     }
 };

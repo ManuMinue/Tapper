@@ -7,7 +7,6 @@ var OBJECT_PLAYER = 1,
     OBJECT_DEADZONE = 8;
 
 var startGame = function() {
-
     Game.activateBoard(7);
 };
 
@@ -22,8 +21,6 @@ var level1 = [
     [22000, 25000, 400, 'wiggle', { x: 150 }],
     [22000, 25000, 400, 'wiggle', { x: 100 }]
 ];
-
-
 
 var playGame = function() {
     GameManager.initialize();

@@ -12,8 +12,8 @@ var initPlaceClient = [{ x: 120, y: 79 },
  * @param {Number} place Posición del array 'initPlaceClient'ñ
  * @param {Number} v     Velocidad del cliente
  */
-var ClientInstance = function(place, v){
-    return new Client(initPlaceClient[place].x,initPlaceClient[place].y, v);
+var ClientInstance = function(place, v) {
+    return new Client(initPlaceClient[place].x, initPlaceClient[place].y, v);
 }
 
 var GameBoard = function(activate) {

@@ -3,8 +3,8 @@ var TitleScreen = function TitleScreen(activate, title, subtitle, callback) {
     var up = false;
     this.step = function(dt) {
         if (!Game.keys['space']) up = true;
-<<<<<<< HEAD
-        if (up && Game.keys['space'] && callback){
+
+        if (up && Game.keys['space'] && callback) {
             this.deactivateClass();
             callback();
         }
@@ -31,7 +31,7 @@ var TitleScreen = function TitleScreen(activate, title, subtitle, callback) {
     this.deactivateClass = function() {
         this.activate = false;
     }
-    
+
     this.activateClass = function() {
         this.activate = true;
     }
