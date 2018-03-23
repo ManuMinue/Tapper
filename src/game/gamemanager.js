@@ -61,5 +61,4 @@ var GameManager = new function() {
         Game.deactivateBoard(2);
         Game.activateBoard(4);
     }
-
 }

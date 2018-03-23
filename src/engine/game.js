@@ -1,5 +1,6 @@
 var Game = new function() {
     var boards = [];
+
     var board = new GameBoard(false);
 
     // Game Initialization
@@ -32,7 +33,6 @@ var Game = new function() {
         this.setBoard(4, new TitleScreen(false, "You lose!",'Press space to start playing', playGame));
         this.setBoard(6, new GamePoints(0));
         this.setBoard(7, new TitleScreen(true, 'Tapper', 'Press space to start playing', playGame));
-
     };
 
     // Handle Input
@@ -117,6 +117,7 @@ var Game = new function() {
         this.canvas.style.left = "0px";
         this.canvas.style.top = "0px";
     };
+<<<<<<< HEAD
 
     this.activateBoard = function(num){
         boards[num].activateClass();

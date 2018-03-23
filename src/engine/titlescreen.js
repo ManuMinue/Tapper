@@ -3,6 +3,7 @@ var TitleScreen = function TitleScreen(activate, title, subtitle, callback) {
     var up = false;
     this.step = function(dt) {
         if (!Game.keys['space']) up = true;
+<<<<<<< HEAD
         if (up && Game.keys['space'] && callback){
             this.deactivateClass();
             callback();
