@@ -23,7 +23,9 @@ var level1 = [
 ];
 
 var playGame = function() {
+
     GameManager.initialize();
+
 };
 
 var Enemy = function(blueprint, override) {

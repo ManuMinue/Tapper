@@ -14,6 +14,7 @@ var Player = function() {
     /*------------------------ATRIBUTOS----------------------*/
     this.setup('Player', { breakTime: 0.25, reloadTime: 0.5 });
 
+
     /**
      * Posición actual del jugador
      */
@@ -26,6 +27,7 @@ var Player = function() {
      * Tiempo que tiene que pasar para que el jugador pueda moverse.
      */
     this.break = this.breakTime;
+
     /**
      * Tiempo que tiene que pasar para que el jugador pueda lanzar otra cerveza.
      */
@@ -41,6 +43,7 @@ var Player = function() {
      * Desplaza al jugador.
      * @param  {int}    num   1 se mueve hacía abajo y -1 hacia arriba . 
      */
+
     this.move = function(num) {
 
         if (this.break < 0) {
@@ -69,6 +72,7 @@ var Player = function() {
  * Definimos que hereda de la clase Sprite.
  */
 Player.prototype = new Sprite();
+
 /**
  * Tipo del objeto, esto servirá para que se pueda calcular las colisiones contra el objeto.
  */

@@ -19,6 +19,7 @@ var Beer = function(status, x, y, v) {
 
     this.x = x - 100;
     this.y = y;
+
     /*------------------------MÉTODOS PROPIOS----------------*/
     /**
      * Dependiendo de si la cerveza está llena o vacía, se moverá hacía la izquierda o
