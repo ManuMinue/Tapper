@@ -11,6 +11,8 @@ var GameManager = new function() {
 
         this.beerEmpty = 0;
 
+        Game.points = 0;
+
         Game.activateBoard(2);
 
     }

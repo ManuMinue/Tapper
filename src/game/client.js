@@ -52,6 +52,7 @@ Client.prototype.step = function(dt) {
  * @param  {double} damage	Cantidad de daño causada.
  */
 Client.prototype.hit = function(damage) {
+    Game.points += 50;
     /**
      * Genera una jarra de cerveza vacía.
      */
