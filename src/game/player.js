@@ -114,5 +114,4 @@ Player.prototype.step = function(dt) {
 
 Player.prototype.hit = function(damage) {
     GameManager.removeGlass();
-    Game.points += 100;
 }
