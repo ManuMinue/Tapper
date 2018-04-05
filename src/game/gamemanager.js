@@ -1,6 +1,5 @@
 /**
  * Clase que controlará el funcionamiento del juego.
- * @return {[type]} [description]
  */
 var GameManager = new function() {
     /**
