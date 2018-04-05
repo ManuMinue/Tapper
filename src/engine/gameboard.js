@@ -111,4 +111,20 @@ var GameBoard = function(activate) {
     this.activateClass = function() {
         this.activate = true;
     }
+    this.initialize = function() {
+        this.resetRemoved();
+        for (var i = 0; i < this.objects.length; ++i) {
+            this.remove(this.objects[i]);
+        }
+        this.finalizeRemoved();
+
+        this.add(new Player());
+        for (var i = 0; i < placesDeadZone.length; ++i) {
+            this.add(new DeadZone(i));
+        }
+        this.add(new Spawner(ClientInstance(0, 0.5), 5, 3, 2));
+        this.add(new Spawner(ClientInstance(1, 0.5), 2, 2.5, 3));
+        this.add(new Spawner(ClientInstance(2, 0.5), 4, 5, 1));
+        this.add(new Spawner(ClientInstance(3, 0.5), 7, 4, 6));
+    }
 };
