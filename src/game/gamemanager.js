@@ -11,6 +11,8 @@ var GameManager = new function() {
 
         this.beerEmpty = 0;
 
+        Game.points = 0;
+
         Game.activateBoard(2);
 
     }
@@ -25,6 +27,7 @@ var GameManager = new function() {
      * Se sirve al cliente una cerveza
      */
     this.drinkBeer = function() {
+        Game.points +=50;
         ++this.beerEmpty;
         ++this.clientsServed;
     }
@@ -32,6 +35,7 @@ var GameManager = new function() {
      * Recogemos una jarra vacía
      */
     this.removeGlass = function() {
+        Game.points +=100;
         --this.beerEmpty;
         if (this.clientsServed == this.numClients && this.beerEmpty == 0) {
             this.win();

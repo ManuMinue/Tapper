@@ -24,7 +24,7 @@ var GamePoints = function() {
     this.deactivate = function() {
         this.activate = false;
     }
-    
+
     this.activate = function() {
         this.activate = true;
     }
