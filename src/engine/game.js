@@ -124,4 +124,21 @@ var Game = new function() {
     this.deactivateBoard = function(num) {
         boards[num].deactivateClass();
     }
+
+    this.initializeBoard = function(){
+        boards[2].resetRemoved();
+        for (var i = 0; i < boards[2].objects.length; ++i) {
+            boards[2].remove(boards[2].objects[i]);
+        }
+        boards[2].finalizeRemoved();
+
+        boards[2].add(new Player());
+        for (var i = 0; i < placesDeadZone.length; ++i) {
+            boards[2].add(new DeadZone(i));
+        }
+        boards[2].add(new Spawner(ClientInstance(0, 0.5), 5, 3, 2));
+        boards[2].add(new Spawner(ClientInstance(1, 0.5), 2, 2.5, 3));
+        boards[2].add(new Spawner(ClientInstance(2, 0.5), 4, 5, 1));
+        boards[2].add(new Spawner(ClientInstance(3, 0.5), 7, 4, 6));
+    }
 };

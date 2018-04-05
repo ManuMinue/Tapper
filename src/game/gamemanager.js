@@ -14,6 +14,7 @@ var GameManager = new function() {
         Game.points = 0;
 
         Game.activateBoard(2);
+        Game.initializeBoard();
 
     }
     /**
